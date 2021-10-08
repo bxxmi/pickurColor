@@ -1,23 +1,5 @@
 @import url(./reset.css);
 @import url(./theme.css);
 
-body {
-  background-color: #444444;
-  border: 1px solid red;
-}
 
-.layout {
-  display: flex;
-  flex-direction: column;
-}
-
-.layout-header {
-  border: 1px solid blue;
-  margin: 50px;
-}
-
-.layout-header .header {
-  font-size: 32px;
-  font-weight: 700;
-}
-
+@import url('./reset.css');
