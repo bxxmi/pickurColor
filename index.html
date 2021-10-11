@@ -4,51 +4,45 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/src/css/style.css">
-  <link rel="stylesheet" href="./src/js/main.js">
-  <title>Pickur Color Theme</title>
+  <link rel="icon" href="./src/images/icon.png" type="image/png">
+  <link rel="stylesheet" href="./src/css/style.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <script src="./src/js/main.js" defer></script>
+  <title>Pickur</title>
 </head>
 <body>
-  <div class="layout">
-    <div class="layout-header">
-      <div class="header-area">
-        <header class="header">
-          <div class="header-item header-item-greeting">
-            <h1>Hello, :)</h1>
-          </div>
-          <div class="header-item header-item-time">
-            <span class="time-hour">22</span>
-            <span class="time-separator">:</span>
-            <span class="time-minute">01</span>
-          </div>
-          <div class="header-item header-item-date">
-            <span class="date-day">8th</span>
-            <span class="date-separator">/</span>
-            <span class="date-month">October</span>
-          </div>
-          <div class="header-item header-item-search">
-            <input type="search" />
-          </div>
-          <div class="header-item header-item-color">
-            <input type="color" value="#ffc933"/>
-          </div>
-        </header>
-      </div>
+  <div class="container">
+    <!-- 네비게이션 -->
+    <div class="nav-area">
+      <nav>
+        <button class="nav-item mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="nav-item color">
+          <input type="color" />
+        </button>
+      </nav>
     </div>
-    <div class="layout-bookmark">
-      <div class="bookmark-area">
-        <div class="bookmark-header">
-          <div class="bookmark-name">
-            <h1>My sites</h1>
+    <!-- 섹션 -->
+    <div class="section-area">
+      <!-- 왼쪽 섹션 -->
+      <section class="section-card">
+        <div class="section-title">
+          <h1>Hello, SEOUL</h1>
+        </div>
+        <!-- 날짜 들어가는 곳 -->
+        <div class="section-info date">
+          <div class="info-content">
+            2021-10-11
           </div>
-          <button>Open all</button>
         </div>
-        <div class="bookmark-section">
-          <div class="bookmark-create"></div>
-          <div class="bookmark-devDocs"></div>
-          <div class="bookmark">Github</div>
+        <!-- 날씨 들어가는 곳 -->
+        <div class="section-info weather">
+          <div class="info-content">
+            27도
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </body>

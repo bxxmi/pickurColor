@@ -1,5 +1,23 @@
 @import url(./reset.css);
-@import url(./theme.css);
 
+.layout {
+  border: 1px solid red;
+  padding: 70px;
+}
 
-@import url('./reset.css');
+/* 헤더 */
+.layout-header {
+  border: 1px solid blue;
+  padding: 20px;
+}
+
+.layout-header .header-area {
+}
+
+.layout-header .header-item-greeting {
+  border: 1px solid purple;
+}
+/* 북마크 */
+.layout-bookmark {
+  border: 1px solid blue;
+}
