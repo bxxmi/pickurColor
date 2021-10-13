@@ -3,10 +3,13 @@
 
 :root {
   /* color */
+  --mode-color: #7035DF;
+  
   /* size */
 }
 
 body {
+  font-family: 'Quicksand', sans-serif;
   background-color: #FFC7C7;
 }
 
@@ -31,8 +34,14 @@ body {
 
 .fa-moon {
   font-size: 24px;
-  color: #7035df;
+  color: var(--mode-color);
+  text-shadow: 0 1px 5px rgb(0 0 0 / 25%);
   transform: rotate(-20deg);
+  transition: 180ms ease-in;
+}
+
+.fa-moon:hover {
+  transform: rotate(-20deg) scale(1.1);
 }
 
 input[type="color"] {
@@ -55,16 +64,17 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .section-card {
-  padding: 110px 0;
+  padding: 140px 0;
 }
 
 .section-card .section-title {
-  margin-bottom: 260px;
+  margin-bottom: 180px;
   display: flex;
 }
 
 .section-card .section-title > span {
   font-size: 72px;
+  text-shadow: 0 1px 5px rgb(0 0 0 / 25%);
 }
 
 .section-card .info-area {
@@ -83,13 +93,12 @@ input[type="color"]::-webkit-color-swatch {
 
 .section-info .info-title > span {
   padding: 5px 0;
-  border-bottom: 1px solid #444444;
 }
 
 .section-info .info-content {
   font-size: 18px;
   padding: 3px 0;
-  color: #777777;
+  color: #808082;
   display: flex;
 }
 
