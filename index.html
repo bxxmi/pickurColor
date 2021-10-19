@@ -14,18 +14,18 @@
   <title>Pickur</title>
 </head>
 <body>  
-  <div class="container">
-    <div class="nav-area">
-      <!-- 네비게이션 -->
-      <nav>
-        <button class="nav-item mode">
-          <i class="fas fa-moon"></i>
-        </button>
-        <button class="nav-item color">
-          <input type="color" value="#EFF1F3"/>
-        </button>
-      </nav>
-    </div>
+  <div class="nav-area">
+    <!-- 네비게이션 -->
+    <nav>
+      <button class="nav-item mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="nav-item color">
+        <input type="color" value="#EFF1F3"/>
+      </button>
+    </nav>
+  </div>
+  <div class="content-layout">
     <div class="header-area">
       <header>
         <div class="header-item clock">
@@ -35,14 +35,33 @@
           <span>14th/October</span>
         </div>
         <div class="header-item search">
-          <input type="search" />
+          <input type="search" placeholder="Find bookmark or search"/>
+          <button>
+            <i class="fas fa-times"></i>
+          </button>
         </div>
       </header>
+    </div>
+    <div class="bookmark-area">
+      <article>
+        <div class="bookmark-title">
+          <span>Bookmark</span>
+        </div>
+        <div class="bookmark-items-wrap">
+          <ul class="bookmark-list">
+            <li class="bookmark create">
+              create
+            </li>
+            <li class="bookmark item">
+              <a href="javascript:void(0)">Devdocs</a>
+            </li>
+          </ul>
+        </div>
+      </article>
     </div>
   </div>
 </body>
 </html>
-</div>
 <!-- 날씨 
 <div class="section-info weather">
   <div class="info-title">
