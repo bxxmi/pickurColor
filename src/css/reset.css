@@ -53,4 +53,18 @@ input {
 }
 a {
 	text-decoration: none;
+	color: black;
+}
+input::-ms-clear,
+input::-ms-reveal{
+    display:none;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration{
+    display:none;
+}
+select:focus {
+	outline: none;
 }
