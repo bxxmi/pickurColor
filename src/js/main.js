@@ -1,18 +1,33 @@
 'use strict';
 
+const TODAY = new Date();
+
 const colorPicker = document.querySelector('input[type="color"]');
 const body = document.querySelector('body');
 const spanList = document.querySelectorAll('span');
 const moonIcon = document.querySelector('.fa-moon');
+const clock = document.querySelector('.header-item.clock');
+const date = document.querySelector('.header-item.date');
 
-window.addEventListener('load', defaultColor);
+window.addEventListener('load', defaultSetting);
 
 // 모드 변경
 
-// 디폴트 배경색
-function defaultColor() {
+// 디폴트 설정
+function defaultSetting() {
+  const span = document.createElement('span');
+
+  // 시간
+  const hour = TODAY.getHours() >= 10 ? TODAY.getHours() : '0' + TODAY.getHours();
+  const minute = TODAY.getMinutes() >= 10 ? TODAY.getMinutes() : '0' + TODAY.getMinutes();
+
+  span.textContent = `${hour}:${minute}`;
+  clock.append(span);
+
+  // 날짜
+
+  // 배경색
   body.style.backgroundColor = colorPicker.value;
-  
   colorPicker.addEventListener('input', changeColor);
 }
 
