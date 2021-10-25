@@ -39,26 +39,48 @@
           </button>
         </div>
       </header>
-    </div>
+    </div> 
     <div class="bookmark-area">
       <article>
         <div class="bookmark-title">
           <span>Bookmark</span>
         </div>
         <div class="bookmark-items-wrap">
-          <ul class="bookmark-list">
-            <button>
-              <li class="bookmark create">
-                  <i class="fas fa-plus"></i>
-              </li>
-           </button>
-            <li class="bookmark item">
+          <div class="bookmark-list">
+            <div class="bookmark create">
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="bookmark item">
               <a href="javascript:void(0)">Devdocs</a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </article>
     </div>
+  </div>
+  <!-- 북마크 모달 창 -->
+  <div class="modal-overlay">
+    <div class="bookmark-modal">
+    <div class="modal-area">
+      <div class="modal-header">
+        <span>📌 Add Bookmark</span>
+      </div>
+      <div class="modal-section">
+        <div class="modal-content name">
+          <span>NAME</span>
+          <input type="text" />
+        </div>
+        <div class="modal-content url">
+          <span>URL</span>
+          <input type="text" />
+        </div>
+      </div>
+      <div class="modal-btns">
+        <button class="btn cancel">취소</button>
+        <button class="btn submit">확인</button>
+      </div>
+    </div>
+  </div>
   </div>
 </body>
 </html>
