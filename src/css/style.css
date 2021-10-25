@@ -10,6 +10,7 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
+  position: relative;
 }
 
 /* 네비게이션 */
@@ -136,6 +137,7 @@ input[type="search"] {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .create {
@@ -146,4 +148,97 @@ input[type="search"] {
 
 .item {
   background-color: #FFF2A8;
+}
+
+/* 모달 창 */
+.modal-overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(1.5px);
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+}
+
+.bookmark-modal {
+  width: 50%;
+  background-color: white;
+  border-radius: 6px;
+  padding: 20px 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  font-size: 20px;
+  padding: 15px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #ececec;
+}
+
+.modal-section {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content.name {
+  margin-bottom: 20px;
+}
+
+.modal-content > span {
+  margin-bottom: 15px;
+}
+
+.modal-content > input {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #ececec;
+}
+
+.modal-content > input:focus {
+  border-bottom: 4px solid #FFF2A8;
+  box-sizing: border-box;
+  transition: 0.25s;
+}
+
+.modal-btns {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.modal-btns .btn {
+  width: 60px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.modal-btns .btn:last-child {
+  margin-right: 0;
+}
+
+.cancel {
+  border-bottom: 3px solid #FFF2A8;
+}
+
+.submit {
+  color: #777777;
+  background-color: #ececec;
+  /* background-color: #FFF2A8; */
 }
