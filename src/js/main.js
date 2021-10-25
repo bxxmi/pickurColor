@@ -4,14 +4,14 @@ const TODAY = new Date();
 
 const colorPicker = document.querySelector('input[type="color"]');
 const body = document.querySelector('body');
-const spanList = document.querySelectorAll('span');
 const moonIcon = document.querySelector('.fa-moon');
 const clock = document.querySelector('.header-item.clock');
 const date = document.querySelector('.header-item.date');
+const createBtn = document.querySelector('.bookmark.create');
+const modalArea = document.querySelector('.modal-overlay');
 
 window.addEventListener('load', defaultSetting);
-
-// 모드 변경
+createBtn.addEventListener('click', openModal);
 
 // 디폴트 설정
 function defaultSetting() {
@@ -52,6 +52,8 @@ function hexToRGB(hex) {
 }
 
 function textWhite() {
+  const spanList = document.querySelectorAll('span');
+
   moonIcon.style.color = '#FCB738';
   colorPicker.style.backgroundColor = 'white';
 
@@ -61,6 +63,8 @@ function textWhite() {
 }
 
 function textBlack() {
+  const spanList = document.querySelectorAll('span');
+
   moonIcon.style.color = '#7035DF';
   colorPicker.style.backgroundColor = 'black';
 
@@ -68,3 +72,28 @@ function textBlack() {
     span.style.color = 'black';
   });
 }
+
+// 모달창 띄우기
+function openModal() {
+  modalArea.style.visibility = 'visible';
+
+  const cancelBtn = document.querySelector('.modal-btns .cancel');
+  cancelBtn.addEventListener('click', closeModal);
+}
+
+function closeModal() {
+  modalArea.style.visibility = 'hidden';
+}
+
+modalArea.addEventListener('click', event => {
+  if (event.target.classList.contains('modal-overlay')) {
+    modalArea.style.visibility = 'hidden';
+  } 
+});
+
+window.addEventListener('keyup', event => {
+  if (modalArea.style.visibility === 'visible' && event.key === 'Escape') {
+    modalArea.style.visibility = 'hidden';
+  }
+});
+
