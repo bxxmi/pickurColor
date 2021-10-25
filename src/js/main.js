@@ -1,34 +1,103 @@
 'use strict';
 
-const TODAY = new Date();
-
+const today = new Date();
 const colorPicker = document.querySelector('input[type="color"]');
 const body = document.querySelector('body');
 const moonIcon = document.querySelector('.fa-moon');
-const clock = document.querySelector('.header-item.clock');
-const date = document.querySelector('.header-item.date');
+const clock = document.querySelector('.header-item.clock > span');
+const date = document.querySelector('.header-item.date > span');
+const searchBar = document.querySelector('input[type="search"]');
+const bookmarkWrap = document.querySelector('.bookmark-items-wrap');
+const bookmarkList = document.querySelector('.bookmark-list');
+const matchingResult = document.querySelector('.bookmark-matching');
+const bookmarkItems = document.querySelectorAll('.bookmark.item');
 const createBtn = document.querySelector('.bookmark.create');
 const modalArea = document.querySelector('.modal-overlay');
 
 window.addEventListener('load', defaultSetting);
+searchBar.addEventListener('keyup', searchObject);
 createBtn.addEventListener('click', openModal);
 
-// 디폴트 설정
+// 홈페이지 첫 진입 시
 function defaultSetting() {
-  const span = document.createElement('span');
+  // 시간 호출
+  getTime();
+  setInterval(getTime, 1000);
 
-  // 시간
-  const hour = TODAY.getHours() >= 10 ? TODAY.getHours() : '0' + TODAY.getHours();
-  const minute = TODAY.getMinutes() >= 10 ? TODAY.getMinutes() : '0' + TODAY.getMinutes();
-
-  span.textContent = `${hour}:${minute}`;
-  clock.append(span);
-
-  // 날짜
+  // 날짜 호출
+  getDate();
 
   // 배경색
   body.style.backgroundColor = colorPicker.value;
   colorPicker.addEventListener('input', changeColor);
+}
+
+// 시간 제어
+function getTime() {
+  const nowHour = today.getHours();
+  const nowMinute = today.getMinutes();
+  const nowTime = timeFormatChange(nowHour, nowMinute);
+
+  clock.textContent = nowTime;
+}
+
+// 시간 포맷 변경
+function timeFormatChange(hour, minute) {
+  const getHour = hour < 10 ? '0' + hour : hour;
+  const getMinute = minute < 10 ? '0' + minute : minute;
+
+  return `${getHour}:${getMinute}`;
+}
+
+// 날짜 제어
+function getDate() {
+  const nowDate = today.getDate() + 'th';
+  const nowMonth = today.getMonth() + 1;
+  const nowDay = dateFormatChange(nowDate, nowMonth);
+
+  date.textContent = nowDay;
+}
+
+// 날짜 포맷 변경
+function dateFormatChange(date, month) {
+  const monthArray = [
+    'January', 'February', 'March', 'April', 'May', 'June', 
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  const getDate = date < 10 ? '0' + date : date;
+  let getMonth = month;
+
+  monthArray.forEach((month, index) => {
+    if (index + 1 === getMonth) getMonth = month;
+  });
+
+  return `${getDate}/${getMonth}`
+}
+
+// 찾는 기능
+function searchObject() {  
+  const searchValue = searchBar.value;
+
+  bookmarkItems.forEach(item => {
+    const itemValue = item.textContent.toLowerCase();
+
+    if (itemValue.includes(searchValue)) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+
+  // // 구글 검색
+  // if (event.key === 'Enter') {
+  //   const searchURL = `https://www.google.com/search?q=${searchBar.value}`;
+  //   window.open(searchURL);
+  // } 
+
+  // if (event.key === 'Backspace' && searchBar.value === '') {
+  //   bookmarkList.style.visibility = 'visible';
+  //   matchingResult.style.visibility = 'hidden';
+  // }
 }
 
 // 배경색 제어
