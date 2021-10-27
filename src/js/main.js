@@ -13,6 +13,8 @@ const matchingResult = document.querySelector('.bookmark-matching');
 const bookmarkItems = document.querySelectorAll('.bookmark.item');
 const createBtn = document.querySelector('.bookmark.create');
 const modalArea = document.querySelector('.modal-overlay');
+const nameBar = document.querySelector('.nameBar');
+const urlBar = document.querySelector('.urlBar');
 
 window.addEventListener('load', defaultSetting);
 searchBar.addEventListener('keyup', searchObject);
@@ -75,7 +77,7 @@ function dateFormatChange(date, month) {
 }
 
 // 찾는 기능
-function searchObject() {  
+function searchObject(event) {  
   const searchValue = searchBar.value;
 
   bookmarkItems.forEach(item => {
@@ -88,16 +90,11 @@ function searchObject() {
     }
   });
 
-  // // 구글 검색
-  // if (event.key === 'Enter') {
-  //   const searchURL = `https://www.google.com/search?q=${searchBar.value}`;
-  //   window.open(searchURL);
-  // } 
-
-  // if (event.key === 'Backspace' && searchBar.value === '') {
-  //   bookmarkList.style.visibility = 'visible';
-  //   matchingResult.style.visibility = 'hidden';
-  // }
+  // 구글 검색
+  if (event.key === 'Enter') {
+    const searchURL = `https://www.google.com/search?q=${searchBar.value}`;
+    window.open(searchURL);
+  } 
 }
 
 // 배경색 제어
@@ -142,12 +139,15 @@ function textBlack() {
   });
 }
 
-// 모달창 띄우기
+// 모달창 띄움, 끄기 제어
 function openModal() {
   modalArea.style.visibility = 'visible';
 
   const cancelBtn = document.querySelector('.modal-btns .cancel');
   cancelBtn.addEventListener('click', closeModal);
+
+  const submitBtn = document.querySelector('.modal-btns .submit');
+  submitBtn.addEventListener('click', createBookmark);
 }
 
 function closeModal() {
@@ -166,3 +166,24 @@ window.addEventListener('keyup', event => {
   }
 });
 
+// 모달창에 작성한 정보 북마크 리스트에 추가하기
+function createBookmark() {
+  const nameVal = nameBar.value;
+  const urlVal = urlBar.value;
+
+  const bookDiv = document.createElement('div');
+  const bookURL = document.createElement('a');
+
+  bookDiv.classList.add('bookmark', 'item');
+  bookURL.classList.add()
+  bookURL.href = urlVal;
+  bookURL.textContent = nameVal;
+
+  bookDiv.append(bookURL);
+  bookmarkList.append(bookDiv);
+
+  nameBar.innerHTML = '';
+  urlBar.innerHTML = '';
+
+  closeModal();
+}
