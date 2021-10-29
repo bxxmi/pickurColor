@@ -3,13 +3,12 @@
 const today = new Date();
 const colorPicker = document.querySelector('input[type="color"]');
 const body = document.querySelector('body');
-const moonIcon = document.querySelector('.fa-moon');
+const settingIcon = document.querySelector('.fa-cog');
 const clock = document.querySelector('.header-item.clock > span');
 const date = document.querySelector('.header-item.date > span');
 const searchBar = document.querySelector('input[type="search"]');
 const bookmarkWrap = document.querySelector('.bookmark-items-wrap');
 const bookmarkList = document.querySelector('.bookmark-list');
-const matchingResult = document.querySelector('.bookmark-matching');
 const bookmarkItems = document.querySelectorAll('.bookmark.item');
 const createBtn = document.querySelector('.bookmark.create');
 const modalArea = document.querySelector('.modal-overlay');
@@ -88,21 +87,28 @@ function searchObject(event) {
     searchValClearBtn.style.visibility = 'hidden';
   }
 
+  if (event.key === 'Enter') {
+    searchPortal(searchVal);
+  } else {
+    matchObject(searchVal);
+  }
+}
+
+function searchPortal(searchVal) {
+  const searchGoogle = `https://www.google.com/search?q=${searchVal}`;
+  window.open(searchGoogle);
+}
+
+function matchObject(searchVal) {
   bookmarkItems.forEach(item => {
     const itemValue = item.textContent.toLowerCase();
 
-    if (itemValue.includes(searchVal)) {
+    if (itemValue.indexOf(searchVal) != -1) {
       item.style.display = 'flex';
     } else {
       item.style.display = 'none';
     }
   });
-
-  // 구글 검색
-  if (event.key === 'Enter') {
-    const searchURL = `https://www.google.com/search?q=${searchBar.value}`;
-    window.open(searchURL);
-  } 
 }
 
 // 배경색 제어
@@ -128,7 +134,7 @@ function hexToRGB(hex) {
 function textWhite() {
   const spanList = document.querySelectorAll('span');
 
-  moonIcon.style.color = '#FCB738';
+  settingIcon.style.color = '#FCB738';
   colorPicker.style.backgroundColor = 'white';
 
   spanList.forEach(span => {
@@ -139,7 +145,7 @@ function textWhite() {
 function textBlack() {
   const spanList = document.querySelectorAll('span');
 
-  moonIcon.style.color = '#7035DF';
+  settingIcon.style.color = '#7035DF';
   colorPicker.style.backgroundColor = 'black';
 
   spanList.forEach(span => {
@@ -190,7 +196,7 @@ function createBookmark() {
     urlBar.style.borderBottomColor = 'red';
     urlBar.placeholder = 'URL을 입력해주세요.';
     return;
-  }
+  } 
 
   const bookDiv = document.createElement('div');
   const deleteBtn = document.createElement('button');
@@ -207,9 +213,6 @@ function createBookmark() {
   bookmarkList.append(bookDiv);
 
   deleteBtn.addEventListener('click', deleteBookmark);
-
-  nameBar.innerHTML = '';
-  urlBar.innerHTML = '';
 
   closeModal();
 }
