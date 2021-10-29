@@ -24,6 +24,7 @@ createBtn.addEventListener('click', openModal);
 function defaultSetting() {
   // 시간 호출
   getTime();
+  
   setInterval(getTime, 1000);
 
   // 날짜 호출
@@ -78,12 +79,19 @@ function dateFormatChange(date, month) {
 
 // 찾는 기능
 function searchObject(event) {  
-  const searchValue = searchBar.value;
+  const searchVal = searchBar.value;
+  const searchValClearBtn = document.querySelector('.search > button');
+
+  if (searchVal) {
+    searchValClearBtn.style.visibility = 'visible';
+  } else {
+    searchValClearBtn.style.visibility = 'hidden';
+  }
 
   bookmarkItems.forEach(item => {
     const itemValue = item.textContent.toLowerCase();
 
-    if (itemValue.includes(searchValue)) {
+    if (itemValue.includes(searchVal)) {
       item.style.display = 'flex';
     } else {
       item.style.display = 'none';
@@ -146,6 +154,7 @@ function openModal() {
   const cancelBtn = document.querySelector('.modal-btns .cancel');
   cancelBtn.addEventListener('click', closeModal);
 
+  nameBar.focus();
   const submitBtn = document.querySelector('.modal-btns .submit');
   submitBtn.addEventListener('click', createBookmark);
 }
@@ -166,24 +175,47 @@ window.addEventListener('keyup', event => {
   }
 });
 
-// 모달창에 작성한 정보 북마크 리스트에 추가하기
+// 모달창에 작성한 정보 북마크 리스트에 추가하기 (localstorage필요)
 function createBookmark() {
   const nameVal = nameBar.value;
   const urlVal = urlBar.value;
 
+  if (!nameVal) {
+    nameBar.focus();
+    nameBar.style.borderBottomColor = 'red';
+    nameBar.placeholder = '북마크 이름을 입력해주세요.';
+    return;
+  } else if (!urlVal) {
+    urlBar.focus();
+    urlBar.style.borderBottomColor = 'red';
+    urlBar.placeholder = 'URL을 입력해주세요.';
+    return;
+  }
+
   const bookDiv = document.createElement('div');
+  const deleteBtn = document.createElement('button');
   const bookURL = document.createElement('a');
 
   bookDiv.classList.add('bookmark', 'item');
-  bookURL.classList.add()
+  deleteBtn.classList.add('delete');
+
+  deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
   bookURL.href = urlVal;
   bookURL.textContent = nameVal;
 
-  bookDiv.append(bookURL);
+  bookDiv.append(bookURL, deleteBtn);
   bookmarkList.append(bookDiv);
+
+  deleteBtn.addEventListener('click', deleteBookmark);
 
   nameBar.innerHTML = '';
   urlBar.innerHTML = '';
 
   closeModal();
+}
+
+// 북마크 삭제
+function deleteBookmark(event) {
+  console.log(event.target.closest('div'));
+  event.target.closest('div').remove();
 }
